@@ -27,36 +27,7 @@ const login = async (req, res) => {
     }
 }
 
-const verification = async (req, res, next) => {
-    let token = req.headers['x-access-token'] || req.headers['authorization']
-    if(!token){
-        res.status(401).send({
-            error: 'Es necesario un token de autenticacion'
-        })
-        return
-    }
-    if(token.startsWith('Bearer ')){
-        token = token.slice(7, token.length)
-        console.log(token);
-    }
-    if(token){
-        jwt.verify(token, app.get('key'), (error, decoded)=> {
-            if(error){
-                return res.json({
-                    message: 'El token no es valido'
-                })
-            } else {
-                req.decoded = decoded
-                res.json(
-                'todo bien todo correcto'
-                )
-                next()
-            }
-        })
-    }
-}
 
 module.exports = {
-    login,
-    verification
+    login
 }

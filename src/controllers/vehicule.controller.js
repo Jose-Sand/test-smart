@@ -1,4 +1,4 @@
-const { pool } = require('../controllers/index.controller')
+const { pool } = require('../database/config')
 
 const getVehicules = async (req,res) => {
     const response = await pool.query('SELECT * FROM vehicules')
