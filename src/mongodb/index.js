@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const url = 'mongodb://localhost/mongodb_1'
+const url = 'mongodb://mongo/mongodb_1'
 
 
 // coneccion db mongoose

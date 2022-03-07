@@ -1,5 +1,1 @@
-.git
-.go-pkg-cache
-.gopath
-bundles
-vendor/pkg
+node_modules

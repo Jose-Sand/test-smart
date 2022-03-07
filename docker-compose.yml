@@ -1,7 +1,46 @@
 version: "3.8"
 services:
-  express:
+  web:
+    container_name: test
     build: .
     ports:
-      - "4000:4000"
-    command: node index
+      - "4000:3000"
+    links:
+      - postgres
+      - mongo
+    environment:
+      - HOST=0.0.0.0
+      - PORT=4000
+    volumes:
+      - .:/usr/src/app
+  postgres:
+    container_name: postgresdatabase
+    image: postgres
+    restart: always
+    environment:
+      - DATABASE_HOST=127.0.0.1
+      - POSTGRES_PASSWORD=miuniverso423
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=dockerdb
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    container_name: pgadmindb
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "80:80"
+    depends_on:
+      - postgres
+
+  mongo: 
+    container_name: monogodatabase
+    image: mongo
+    ports: 
+     - "28017:27017"
+
+
+

@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-
+require('./mongodb')
 
 
 //middlewares
@@ -14,5 +14,5 @@ app.use(require('./routes/auth'))
 app.use(require('./routes/cities'))
 app.use(require('./routes/routesVehicules'))
 
-app.listen(4000)
-console.log('server on port 4000');
+app.listen(3000)
+console.log('server on port 3000');
